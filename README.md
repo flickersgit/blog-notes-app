@@ -40,6 +40,7 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 - **Blog Name:** Rename your blog (max 30 characters)
 - **Theme:** 8 pastel color options (Cream, White, Rose, Peach, Mint, Sky, Lavender, Gray)
 - **Pattern:** Choose note background pattern (Plain, Dots, Lines)
+- **Footnote:** Custom footer text (max 100 characters)
 - Settings apply globally across all pages
 
 ### Dark/Light Mode
@@ -113,6 +114,7 @@ model Settings {
   blogTitle       String   @default("Notes")
   backgroundColor String   @default("#FFFEF5")
   pattern         String   @default("plain")
+  footnote        String   @default("Built with Apple Notes style")
   updatedAt       DateTime @updatedAt
 }
 ```
