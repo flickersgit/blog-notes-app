@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Link from 'next/link'
 import { NoteItem } from './NoteItem'
 import { SearchBar } from './SearchBar'
 
@@ -46,7 +47,27 @@ export function NotesSidebar({
     <div className="w-72 h-full bg-stone-50 border-r border-gray-200 flex flex-col">
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-semibold text-gray-800">Notes</h1>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/"
+              className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-colors"
+              title="Back to home"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
+            <h1 className="text-xl font-semibold text-gray-800">Notes</h1>
+          </div>
           <button
             onClick={onCreateNew}
             disabled={isCreating}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
+import { NewNoteButton } from '@/components/NewNoteButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -25,8 +26,9 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-amber-50/30">
       <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-2xl mx-auto px-6 py-4">
+        <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
           <h1 className="text-xl font-semibold text-gray-800">Notes</h1>
+          <NewNoteButton />
         </div>
       </header>
 

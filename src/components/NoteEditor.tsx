@@ -39,6 +39,7 @@ export function NoteEditor({
       }),
     ],
     content: initialContent,
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         class:
