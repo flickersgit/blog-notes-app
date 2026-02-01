@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { format } from 'date-fns'
 import { BackToNotesLink, PageWrapper, ThemedHeader, ThemedArticle, Footnote } from '@/components/HomePageClient'
@@ -15,6 +16,7 @@ async function getPost(slug: string) {
 }
 
 async function getSettings() {
+  noStore()
   let settings = await prisma.settings.findUnique({
     where: { id: 'singleton' },
   })

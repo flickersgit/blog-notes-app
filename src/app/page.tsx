@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
 import { NewNoteButton } from '@/components/NewNoteButton'
@@ -8,6 +9,7 @@ import { BlogTitle, Footnote, PageWrapper, PostCard, ThemedHeader } from '@/comp
 export const dynamic = 'force-dynamic'
 
 async function getSettings() {
+  noStore()
   let settings = await prisma.settings.findUnique({
     where: { id: 'singleton' },
   })
