@@ -75,7 +75,8 @@ export default async function HomePage() {
           <div className="space-y-4">
             {posts.map((post) => {
               const preview = post.content
-                .replace(/<[^>]*>/g, '')
+                .replace(/<[^>]*>/g, ' ')
+                .replace(/\s+/g, ' ')
                 .slice(0, 150)
                 .trim()
 

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   return {
     title: post.title,
-    description: post.content.replace(/<[^>]*>/g, '').slice(0, 160),
+    description: post.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160),
   }
 }
 

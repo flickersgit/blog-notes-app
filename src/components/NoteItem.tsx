@@ -25,7 +25,8 @@ export function NoteItem({
   onClick,
 }: NoteItemProps) {
   const preview = content
-    .replace(/<[^>]*>/g, '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
     .slice(0, 60)
     .trim()
 
