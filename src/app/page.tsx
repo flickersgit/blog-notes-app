@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
 import { NewNoteButton } from '@/components/NewNoteButton'
@@ -5,6 +6,21 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { BlogTitle, PageWrapper, PostCard, ThemedHeader } from '@/components/HomePageClient'
 
 export const dynamic = 'force-dynamic'
+
+async function getSettings() {
+  const settings = await prisma.settings.findUnique({
+    where: { id: 'singleton' },
+  })
+  return settings
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings()
+  return {
+    title: settings?.blogTitle || 'Notes',
+    description: 'A simple notes app with Apple Notes style',
+  }
+}
 
 async function getPublishedPosts() {
   const posts = await prisma.post.findMany({
