@@ -4,8 +4,8 @@ import { nanoid } from 'nanoid'
 import { format } from 'date-fns'
 
 function formatDateTitle(date: Date): string {
-  // Format: "Sat 1 Feb 26"
-  return format(date, 'EEE d MMM yy')
+  // Format: "Sunday, Feb 1 2026"
+  return format(date, 'EEEE, MMM d yyyy')
 }
 
 async function generateUniqueTitle(): Promise<string> {
