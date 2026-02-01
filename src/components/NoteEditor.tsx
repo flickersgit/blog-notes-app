@@ -81,7 +81,7 @@ export function NoteEditor({
 
   if (!postId) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-amber-50/30">
+      <div className="flex-1 flex items-center justify-center bg-amber-50/30 pt-16 md:pt-0">
         <div className="text-center text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +104,8 @@ export function NoteEditor({
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-amber-50/30">
-      <div className="border-b border-gray-200 px-8 py-4 bg-white/50">
+    <div className="flex-1 flex flex-col bg-amber-50/30 pt-16 md:pt-0">
+      <div className="border-b border-gray-200 px-4 md:px-8 py-4 bg-white/50">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <button
@@ -172,7 +172,7 @@ export function NoteEditor({
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto px-8 py-6">
+      <div className="flex-1 overflow-y-auto px-4 md:px-8 py-6">
         <EditorContent editor={editor} />
       </div>
     </div>

@@ -33,6 +33,7 @@ function AdminContent() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isCreating, setIsCreating] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const selectedNote = notes.find((n) => n.id === selectedId) || null
 
@@ -150,7 +151,35 @@ function AdminContent() {
         onCreateNew={handleCreateNew}
         onBulkDelete={handleBulkDelete}
         isCreating={isCreating}
+        isOpen={isSidebarOpen}
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
       />
+
+      {/* Mobile header with hamburger menu */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-30 bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+          title="Open sidebar"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+        <span className="font-medium text-gray-800 truncate">
+          {selectedNote?.title || 'Notes'}
+        </span>
+      </div>
+
       <NoteEditor
         postId={selectedNote?.id || ''}
         initialTitle={selectedNote?.title || ''}
