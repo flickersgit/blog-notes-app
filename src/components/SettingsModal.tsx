@@ -62,12 +62,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="relative bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto p-4">
+        <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-800">Settings</h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,9 +84,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           </button>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Blog Name
             </label>
             <input
@@ -94,29 +94,26 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               value={blogTitle}
               onChange={(e) => setBlogTitle(e.target.value.slice(0, 30))}
               placeholder="Enter blog name"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-800"
+              className="w-full px-3 py-1.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-800 text-sm"
             />
-            <p className="mt-1 text-xs text-gray-400 text-right">
-              {blogTitle.length}/30
-            </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Theme
             </label>
             <ColorPicker value={backgroundColor} onChange={setBackgroundColor} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Pattern
             </label>
             <PatternPicker value={pattern} onChange={setPattern} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Footnote
             </label>
             <input
@@ -124,15 +121,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               value={footnote}
               onChange={(e) => setFootnote(e.target.value.slice(0, 100))}
               placeholder="Footer text"
-              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-800"
+              className="w-full px-3 py-1.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-800 text-sm"
             />
-            <p className="mt-1 text-xs text-gray-400 text-right">
-              {footnote.length}/100
-            </p>
           </div>
         </div>
 
-        <div className="flex gap-3 mt-8">
+        <div className="flex gap-3 mt-5">
           <button
             onClick={onClose}
             className="flex-1 px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
