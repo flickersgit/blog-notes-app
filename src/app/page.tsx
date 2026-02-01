@@ -24,7 +24,7 @@ async function getSettings() {
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings()
   const title = settings?.blogTitle || 'Notes'
-  const description = settings?.footnote || 'A simple notes app with Apple Notes style'
+  const description = settings?.footnote || 'A simple blogging notes with style'
 
   return {
     title,

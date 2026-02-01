@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps) {
     return { title: 'Not Found' }
   }
 
-  const description = settings?.footnote || 'A simple notes app with Apple Notes style'
+  const description = settings?.footnote || 'A simple blogging notes with style'
 
   return {
     title: post.title,
