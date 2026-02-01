@@ -36,17 +36,18 @@ function AdminContent() {
   const [isLoading, setIsLoading] = useState(true)
   const [isCreating, setIsCreating] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [initialUrlHandled, setInitialUrlHandled] = useState(false)
 
   const selectedNote = notes.find((n) => n.id === selectedId) || null
 
-  const fetchNotes = useCallback(async () => {
+  const fetchNotes = useCallback(async (selectFromUrl = false) => {
     try {
       const response = await fetch('/api/posts')
       const data = await response.json()
       setNotes(data)
 
-      // Auto-select note from URL param
-      if (noteIdFromUrl && data.some((n: Note) => n.id === noteIdFromUrl)) {
+      // Auto-select note from URL param only on initial load
+      if (selectFromUrl && noteIdFromUrl && data.some((n: Note) => n.id === noteIdFromUrl)) {
         setSelectedId(noteIdFromUrl)
       }
     } catch (error) {
@@ -57,8 +58,11 @@ function AdminContent() {
   }, [noteIdFromUrl])
 
   useEffect(() => {
-    fetchNotes()
-  }, [fetchNotes])
+    if (!initialUrlHandled) {
+      fetchNotes(true)
+      setInitialUrlHandled(true)
+    }
+  }, [fetchNotes, initialUrlHandled])
 
   const handleCreateNew = async () => {
     setIsCreating(true)
@@ -111,7 +115,7 @@ function AdminContent() {
   }
 
   const handleSaved = () => {
-    fetchNotes()
+    fetchNotes(false)
   }
 
   if (isLoading) {
