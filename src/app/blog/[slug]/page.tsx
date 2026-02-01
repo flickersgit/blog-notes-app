@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { format } from 'date-fns'
-import { BackToNotesLink, PageWrapper, ThemedHeader, ThemedArticle } from '@/components/HomePageClient'
+import { BackToNotesLink, PageWrapper, ThemedHeader, ThemedArticle, Footnote } from '@/components/HomePageClient'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -14,17 +14,36 @@ async function getPost(slug: string) {
   return post
 }
 
+async function getSettings() {
+  const settings = await prisma.settings.findUnique({
+    where: { id: 'singleton' },
+  })
+  return settings
+}
+
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
-  const post = await getPost(slug)
+  const [post, settings] = await Promise.all([getPost(slug), getSettings()])
 
   if (!post) {
     return { title: 'Not Found' }
   }
 
+  const description = settings?.footnote || 'A simple notes app with Apple Notes style'
+
   return {
     title: post.title,
-    description: post.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160),
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary',
+      title: post.title,
+      description,
+    },
   }
 }
 
@@ -64,7 +83,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <footer className="border-t border-gray-200 dark:border-zinc-700 mt-16">
         <div className="max-w-2xl mx-auto px-6 py-4 text-center text-sm text-gray-400 dark:text-gray-500">
-          Built with Apple Notes style
+          <Footnote />
         </div>
       </footer>
     </PageWrapper>

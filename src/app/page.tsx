@@ -16,9 +16,22 @@ async function getSettings() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings()
+  const title = settings?.blogTitle || 'Notes'
+  const description = settings?.footnote || 'A simple notes app with Apple Notes style'
+
   return {
-    title: settings?.blogTitle || 'Notes',
-    description: 'A simple notes app with Apple Notes style',
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
   }
 }
 
