@@ -43,11 +43,10 @@ function AdminContent() {
 
   const selectedNote = notes.find((n) => n.id === selectedId) || null
 
-  // Helper to check if a note is empty (untitled and no content)
+  // Helper to check if a note is empty (no content)
   const isEmptyNote = (note: Note) => {
-    const hasNoTitle = !note.title || note.title.trim() === '' || note.title === 'Untitled'
     const hasNoContent = !note.content || note.content.replace(/<[^>]*>/g, '').trim() === ''
-    return hasNoTitle && hasNoContent
+    return hasNoContent
   }
 
   // Cleanup empty notes when leaving the page
