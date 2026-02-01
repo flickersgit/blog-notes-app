@@ -12,6 +12,7 @@
     "db:migrate": "prisma migrate dev"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.5",
     "@prisma/client": "^5.22.0",
     "@tiptap/extension-placeholder": "^3.18.0",
     "@tiptap/react": "^3.18.0",
