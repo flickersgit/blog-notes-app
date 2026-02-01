@@ -8,9 +8,14 @@ import { BlogTitle, Footnote, PageWrapper, PostCard, ThemedHeader } from '@/comp
 export const dynamic = 'force-dynamic'
 
 async function getSettings() {
-  const settings = await prisma.settings.findUnique({
+  let settings = await prisma.settings.findUnique({
     where: { id: 'singleton' },
   })
+  if (!settings) {
+    settings = await prisma.settings.create({
+      data: { id: 'singleton' },
+    })
+  }
   return settings
 }
 
