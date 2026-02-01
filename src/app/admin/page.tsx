@@ -10,8 +10,8 @@ import { useSettings } from '@/lib/contexts/SettingsContext'
 const NoteEditor = dynamic(() => import('@/components/NoteEditor').then(mod => mod.NoteEditor), {
   ssr: false,
   loading: () => (
-    <div className="flex-1 flex items-center justify-center bg-amber-50/30">
-      <div className="text-gray-400">Loading editor...</div>
+    <div className="flex-1 flex items-center justify-center" style={{ backgroundColor: 'var(--background)' }}>
+      <div className="text-gray-400 dark:text-gray-500">Loading editor...</div>
     </div>
   ),
 })
@@ -116,8 +116,8 @@ function AdminContent() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-amber-50/30">
-        <div className="flex items-center gap-2 text-gray-500">
+      <div className="h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--background)' }}>
+        <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
           <svg
             className="animate-spin h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
@@ -159,12 +159,12 @@ function AdminContent() {
 
       {/* Mobile header with hamburger menu */}
       <div
-        className="md:hidden fixed top-0 left-0 right-0 z-30 border-b border-gray-200/50 px-4 py-3 flex items-center gap-3"
+        className="md:hidden fixed top-0 left-0 right-0 z-30 border-b border-gray-200/50 dark:border-zinc-700/50 px-4 py-3 flex items-center gap-3"
         style={{ backgroundColor: 'var(--background)' }}
       >
         <button
           onClick={() => setIsSidebarOpen(true)}
-          className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-zinc-700 transition-colors"
           title="Open sidebar"
         >
           <svg
@@ -180,7 +180,7 @@ function AdminContent() {
             />
           </svg>
         </button>
-        <span className="font-medium text-gray-800 truncate">
+        <span className="font-medium text-gray-800 dark:text-gray-100 truncate">
           {selectedNote?.title || settings.blogTitle}
         </span>
       </div>
@@ -203,8 +203,8 @@ export default function AdminPage() {
   return (
     <Suspense
       fallback={
-        <div className="h-screen flex items-center justify-center bg-amber-50/30">
-          <div className="flex items-center gap-2 text-gray-500">
+        <div className="h-screen flex items-center justify-center bg-[#FFFEF5] dark:bg-[#1C1A14]">
+          <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
             <svg
               className="animate-spin h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"

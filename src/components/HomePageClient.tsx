@@ -14,7 +14,7 @@ export function BackToNotesLink() {
   return (
     <Link
       href="/"
-      className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-800 transition-colors"
+      className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -58,16 +58,16 @@ export function PostCard({ href, title, preview, date }: PostCardProps) {
   return (
     <Link
       href={href}
-      className="block p-6 rounded-xl border border-gray-200/50 hover:shadow-md transition-all"
+      className="block p-6 rounded-xl border border-gray-200/50 dark:border-zinc-700/50 hover:shadow-md dark:hover:shadow-zinc-900/50 transition-all"
       style={{ backgroundColor: 'var(--background-shade)' }}
     >
-      <h2 className="text-lg font-medium text-gray-900 mb-2">
+      <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
         {title || 'Untitled'}
       </h2>
-      <p className="text-gray-500 text-sm line-clamp-2 mb-3">
+      <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 mb-3">
         {preview || 'No content'}
       </p>
-      <p className="text-xs text-gray-400">{date}</p>
+      <p className="text-xs text-gray-400 dark:text-gray-500">{date}</p>
     </Link>
   )
 }
@@ -75,7 +75,7 @@ export function PostCard({ href, title, preview, date }: PostCardProps) {
 export function ThemedHeader({ children }: { children: ReactNode }) {
   return (
     <header
-      className="border-b border-gray-200/50 backdrop-blur-sm sticky top-0 z-10"
+      className="border-b border-gray-200/50 dark:border-zinc-700/50 backdrop-blur-sm sticky top-0 z-10"
       style={{ backgroundColor: 'var(--background)' }}
     >
       {children}
@@ -89,7 +89,7 @@ export function ThemedArticle({ children, className = '' }: { children: ReactNod
 
   return (
     <article
-      className={`rounded-xl border border-gray-200/50 ${patternClass} ${className}`}
+      className={`rounded-xl border border-gray-200/50 dark:border-zinc-700/50 ${patternClass} ${className}`}
       style={{ backgroundColor: 'var(--background-shade)' }}
     >
       {children}

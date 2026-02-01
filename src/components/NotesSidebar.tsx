@@ -94,26 +94,26 @@ export function NotesSidebar({
       {/* Mobile overlay backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-40 md:hidden"
+          className="fixed inset-0 bg-black/30 dark:bg-black/50 z-40 md:hidden"
           onClick={onToggle}
         />
       )}
 
       <div
         className={`
-          fixed inset-y-0 left-0 z-50 w-72 border-r border-gray-200 flex flex-col
+          fixed inset-y-0 left-0 z-50 w-72 border-r border-gray-200 dark:border-zinc-700 flex flex-col
           transform transition-transform duration-300 ease-in-out
           md:relative md:translate-x-0
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
         style={{ backgroundColor: 'var(--background)' }}
       >
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-gray-200 dark:border-zinc-700">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Link
                 href="/"
-                className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-colors"
+                className="p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
                 title="Back to home"
               >
                 <svg
@@ -129,10 +129,10 @@ export function NotesSidebar({
                   />
                 </svg>
               </Link>
-              <h1 className="text-xl font-semibold text-gray-800">{settings.blogTitle}</h1>
+              <h1 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{settings.blogTitle}</h1>
               <button
                 onClick={() => setIsSettingsOpen(true)}
-                className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600 transition-colors"
+                className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 title="Settings"
               >
                 <svg
@@ -153,7 +153,7 @@ export function NotesSidebar({
               {/* Close button - mobile only */}
               <button
                 onClick={onToggle}
-                className="p-2 rounded-lg text-gray-500 hover:bg-gray-200 hover:text-gray-700 transition-colors md:hidden"
+                className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-gray-700 dark:hover:text-gray-200 transition-colors md:hidden"
                 title="Close sidebar"
               >
                 <svg
@@ -219,15 +219,15 @@ export function NotesSidebar({
         {/* Select mode toolbar */}
         {filteredNotes.length > 0 && (
           <div
-            className="px-4 py-2 border-b border-gray-200 flex items-center justify-between"
+            className="px-4 py-2 border-b border-gray-200 dark:border-zinc-700 flex items-center justify-between"
             style={{ backgroundColor: 'var(--background-shade)' }}
           >
             <button
               onClick={handleToggleSelectMode}
               className={`px-3 py-1 text-sm rounded transition-colors ${
                 isSelectMode
-                  ? 'bg-gray-200 text-gray-700'
-                  : 'text-gray-600 hover:bg-gray-200'
+                  ? 'bg-gray-200 dark:bg-zinc-700 text-gray-700 dark:text-gray-200'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700'
               }`}
             >
               {isSelectMode ? 'Cancel' : 'Select'}
@@ -235,7 +235,7 @@ export function NotesSidebar({
             {isSelectMode && checkedIds.size > 0 && (
               <button
                 onClick={handleBulkDelete}
-                className="flex items-center gap-1 px-3 py-1 text-sm text-red-600 hover:bg-red-50 rounded transition-colors"
+                className="flex items-center gap-1 px-3 py-1 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -257,7 +257,7 @@ export function NotesSidebar({
 
         <div className="flex-1 overflow-y-auto">
           {filteredNotes.length === 0 ? (
-            <div className="p-4 text-center text-gray-500 text-sm">
+            <div className="p-4 text-center text-gray-500 dark:text-gray-400 text-sm">
               {searchQuery ? 'No matching notes' : 'No notes yet'}
             </div>
           ) : (
@@ -278,7 +278,7 @@ export function NotesSidebar({
           )}
         </div>
 
-        <div className="p-3 border-t border-gray-200 text-xs text-gray-400 text-center">
+        <div className="p-3 border-t border-gray-200 dark:border-zinc-700 text-xs text-gray-400 text-center">
           {notes.length} {notes.length === 1 ? 'note' : 'notes'}
         </div>
       </div>

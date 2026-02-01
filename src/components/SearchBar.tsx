@@ -10,7 +10,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
     <div className="relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400"
+        className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -27,7 +27,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search notes..."
-        className="w-full pl-9 pr-4 py-2 rounded-lg text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all"
+        className="w-full pl-9 pr-4 py-2 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-200 dark:focus:ring-amber-500/30 transition-all"
         style={{ backgroundColor: 'var(--background-shade)' }}
       />
     </div>

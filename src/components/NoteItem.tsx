@@ -34,7 +34,7 @@ export function NoteItem({
   return (
     <div
       onClick={isSelectMode ? () => onCheck(!isChecked) : onClick}
-      className="px-4 py-3 cursor-pointer border-b border-gray-100 transition-colors"
+      className="px-4 py-3 cursor-pointer border-b border-gray-100 dark:border-zinc-800 transition-colors"
       style={{
         backgroundColor: isHighlighted ? 'var(--background-shade)' : undefined,
       }}
@@ -59,17 +59,17 @@ export function NoteItem({
               onCheck(e.target.checked)
             }}
             onClick={(e) => e.stopPropagation()}
-            className="mt-1 h-4 w-4 rounded-full border-gray-300 text-amber-500 focus:ring-amber-500 cursor-pointer"
+            className="mt-1 h-4 w-4 rounded-full border-gray-300 dark:border-zinc-600 text-amber-500 focus:ring-amber-500 cursor-pointer"
           />
         )}
         <div className="flex-1 min-w-0">
-          <h3 className="font-medium text-gray-900 truncate">
+          <h3 className="font-medium text-gray-900 dark:text-gray-100 truncate">
             {title || 'Untitled'}
           </h3>
-          <p className="text-sm text-gray-500 truncate mt-0.5">
+          <p className="text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5">
             {preview || 'No content'}
           </p>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
             {formatDistanceToNow(new Date(updatedAt), { addSuffix: true })}
           </p>
         </div>

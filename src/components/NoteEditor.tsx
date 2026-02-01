@@ -89,7 +89,7 @@ export function NoteEditor({
         className={`flex-1 flex items-center justify-center pt-16 md:pt-0 ${patternClass}`}
         style={{ backgroundColor: 'var(--background)' }}
       >
-        <div className="text-center text-gray-400">
+        <div className="text-center text-gray-400 dark:text-gray-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-16 w-16 mx-auto mb-4 opacity-50"
@@ -116,7 +116,7 @@ export function NoteEditor({
       style={{ backgroundColor: 'var(--background)' }}
     >
       <div
-        className="border-b border-gray-200/50 px-4 md:px-8 py-4"
+        className="border-b border-gray-200/50 dark:border-zinc-700/50 px-4 md:px-8 py-4"
         style={{ backgroundColor: 'var(--background-shade)' }}
       >
         <div className="flex items-center justify-between mb-2">
@@ -125,14 +125,14 @@ export function NoteEditor({
               onClick={handlePublishToggle}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                 published
-                  ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50'
+                  : 'bg-gray-100 dark:bg-zinc-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-zinc-600'
               }`}
             >
               {published ? 'Published' : 'Draft'}
             </button>
           </div>
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
             {isSaving ? (
               <>
                 <svg
@@ -181,7 +181,7 @@ export function NoteEditor({
           value={initialTitle}
           onChange={(e) => onTitleChange(e.target.value)}
           placeholder="Untitled"
-          className="w-full text-2xl font-semibold text-gray-800 bg-transparent border-none focus:outline-none placeholder-gray-300"
+          className="w-full text-2xl font-semibold text-gray-800 dark:text-gray-100 bg-transparent border-none focus:outline-none placeholder-gray-300 dark:placeholder-gray-600"
         />
       </div>
 

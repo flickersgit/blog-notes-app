@@ -1,9 +1,29 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #FFFEF5;
   --background-shade: #FDF9E8;
   --foreground: #1a1a1a;
+  --foreground-muted: #6b7280;
+  --foreground-subtle: #9ca3af;
+  --border: #e5e7eb;
+  --border-subtle: #f3f4f6;
+  --surface: #ffffff;
+  --surface-hover: #f9fafb;
+}
+
+.dark {
+  --background: #1C1A14;
+  --background-shade: #252218;
+  --foreground: #f5f5f4;
+  --foreground-muted: #a8a29e;
+  --foreground-subtle: #78716c;
+  --border: #3f3f46;
+  --border-subtle: #27272a;
+  --surface: #27272a;
+  --surface-hover: #3f3f46;
 }
 
 body {
@@ -12,7 +32,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Pattern styles */
+/* Pattern styles - Light mode */
 .pattern-dots {
   background-image: radial-gradient(circle, #00000015 1.5px, transparent 1.5px);
   background-size: 16px 16px;
@@ -28,13 +48,29 @@ body {
   );
 }
 
+/* Pattern styles - Dark mode */
+.dark .pattern-dots {
+  background-image: radial-gradient(circle, #ffffff15 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.dark .pattern-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 23px,
+    #ffffff12 23px,
+    #ffffff12 24px
+  );
+}
+
 /* TipTap Editor Styles */
 .ProseMirror {
   outline: none;
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {
-  color: #adb5bd;
+  color: var(--foreground-subtle);
   content: attr(data-placeholder);
   float: left;
   height: 0;
@@ -45,22 +81,26 @@ body {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
+  color: var(--foreground);
 }
 
 .ProseMirror h2 {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  color: var(--foreground);
 }
 
 .ProseMirror h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  color: var(--foreground);
 }
 
 .ProseMirror p {
   margin-bottom: 0.75rem;
+  color: var(--foreground);
 }
 
 .ProseMirror ul,
@@ -71,17 +111,18 @@ body {
 
 .ProseMirror li {
   margin-bottom: 0.25rem;
+  color: var(--foreground);
 }
 
 .ProseMirror blockquote {
-  border-left: 3px solid #e5e7eb;
+  border-left: 3px solid var(--border);
   padding-left: 1rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   margin-bottom: 0.75rem;
 }
 
 .ProseMirror code {
-  background-color: #f3f4f6;
+  background-color: var(--surface);
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
@@ -96,6 +137,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.dark .ProseMirror pre {
+  background-color: #0f0f0f;
+}
+
 .ProseMirror pre code {
   background: none;
   padding: 0;
@@ -107,6 +152,7 @@ body {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
+  color: var(--foreground);
 }
 
 .prose h2 {
@@ -114,6 +160,7 @@ body {
   font-weight: 600;
   margin-bottom: 0.5rem;
   margin-top: 1.5rem;
+  color: var(--foreground);
 }
 
 .prose h3 {
@@ -121,11 +168,13 @@ body {
   font-weight: 600;
   margin-bottom: 0.5rem;
   margin-top: 1.25rem;
+  color: var(--foreground);
 }
 
 .prose p {
   margin-bottom: 0.75rem;
   line-height: 1.7;
+  color: var(--foreground);
 }
 
 .prose ul,
@@ -136,17 +185,18 @@ body {
 
 .prose li {
   margin-bottom: 0.25rem;
+  color: var(--foreground);
 }
 
 .prose blockquote {
-  border-left: 3px solid #e5e7eb;
+  border-left: 3px solid var(--border);
   padding-left: 1rem;
-  color: #6b7280;
+  color: var(--foreground-muted);
   margin: 1rem 0;
 }
 
 .prose code {
-  background-color: #f3f4f6;
+  background-color: var(--surface);
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
@@ -159,6 +209,10 @@ body {
   border-radius: 0.5rem;
   overflow-x: auto;
   margin: 1rem 0;
+}
+
+.dark .prose pre {
+  background-color: #0f0f0f;
 }
 
 .prose pre code {
@@ -174,4 +228,12 @@ body {
 
 .prose a:hover {
   color: #b45309;
+}
+
+.dark .prose a {
+  color: #fbbf24;
+}
+
+.dark .prose a:hover {
+  color: #fcd34d;
 }
