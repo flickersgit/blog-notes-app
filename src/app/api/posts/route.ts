@@ -4,12 +4,8 @@ import { nanoid } from 'nanoid'
 import { format } from 'date-fns'
 
 function formatDateTitle(date: Date): string {
-  // Format: "Sun, 1 Feb 26"
-  const day = format(date, 'EEE')
-  const dayNum = format(date, 'd')
-  const month = format(date, 'MMM')
-  const year = format(date, 'yy')
-  return `${day}, ${dayNum} ${month} ${year}`
+  // Format: "Sat 1 Feb 26"
+  return format(date, 'EEE d MMM yy')
 }
 
 async function generateUniqueTitle(): Promise<string> {
