@@ -25,14 +25,16 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 
 ### Admin Page (`/admin`)
 - Single-page app with sidebar + editor layout
-- "+" button to create new note
+- "+" button to create new note with auto-generated date title (e.g., "Sat, 1 Feb 26")
+- Multiple posts same day get index suffix: "~ 2", "~ 3", etc.
 - Back button to return to homepage
 - Search notes by title/content
 - Auto-save while typing (2 second debounce)
 - Toggle Draft/Published status
+- Insert retro pixel art figures (Minecraft & Lego style characters)
 - Select mode for bulk delete (round checkboxes)
 - Settings (gear icon) for customization
-- Auto-cleanup: Empty untitled notes are deleted when leaving the page
+- Auto-cleanup: Notes with empty content are deleted when leaving the page
 
 ### Settings
 - **Blog Name:** Rename your blog (max 30 characters)
@@ -49,6 +51,13 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 ### Blog Detail (`/blog/[slug]`)
 - Read-only page for visitors
 - Renders HTML content from TipTap editor
+
+### Retro Pixel Art Figures
+- Insert animated pixel art characters into posts
+- 9 figure types: Steve, Alex, Creeper, Skeleton, Zombie, and 4 Lego minifigs
+- 4 animations: Idle, Walk, Bounce, Wave
+- Pure CSS implementation using box-shadow technique (no images)
+- Respects reduced motion preferences
 
 ## Project Structure
 
@@ -74,7 +83,11 @@ src/
 │   ├── SettingsModal.tsx     # Settings modal
 │   ├── ColorPicker.tsx       # Theme color picker
 │   ├── PatternPicker.tsx     # Pattern picker
-│   └── HomePageClient.tsx    # Client components for homepage
+│   ├── HomePageClient.tsx    # Client components for homepage
+│   └── RetroFigure/          # Pixel art figure components
+│       ├── figures.ts        # Figure definitions
+│       ├── RetroFigureExtension.ts  # TipTap extension
+│       └── RetroFigurePicker.tsx    # Figure picker UI
 └── lib/
     ├── prisma.ts             # Database client
     ├── hooks/useAutoSave.ts  # Auto-save hook
