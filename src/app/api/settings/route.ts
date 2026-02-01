@@ -26,7 +26,7 @@ export async function GET() {
 export async function PUT(request: Request) {
   try {
     const body = await request.json()
-    const { blogTitle, backgroundColor, pattern } = body
+    const { blogTitle, backgroundColor, pattern, footnote } = body
 
     if (blogTitle !== undefined && blogTitle.length > 30) {
       return NextResponse.json(
@@ -42,18 +42,27 @@ export async function PUT(request: Request) {
       )
     }
 
+    if (footnote !== undefined && footnote.length > 100) {
+      return NextResponse.json(
+        { error: 'Footnote must be 100 characters or less' },
+        { status: 400 }
+      )
+    }
+
     const settings = await prisma.settings.upsert({
       where: { id: 'singleton' },
       update: {
         ...(blogTitle !== undefined && { blogTitle }),
         ...(backgroundColor !== undefined && { backgroundColor }),
         ...(pattern !== undefined && { pattern }),
+        ...(footnote !== undefined && { footnote }),
       },
       create: {
         id: 'singleton',
         ...(blogTitle !== undefined && { blogTitle }),
         ...(backgroundColor !== undefined && { backgroundColor }),
         ...(pattern !== undefined && { pattern }),
+        ...(footnote !== undefined && { footnote }),
       },
     })
 
