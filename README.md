@@ -28,6 +28,13 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 - Auto-save while typing (2 second debounce)
 - Toggle Draft/Published status
 - Select mode for bulk delete (round checkboxes)
+- Settings (gear icon) for customization
+
+### Settings
+- **Blog Name:** Rename your blog (max 30 characters)
+- **Theme:** 8 pastel color options (Cream, White, Rose, Peach, Mint, Sky, Lavender, Gray)
+- **Pattern:** Choose note background pattern (Plain, Dots, Lines)
+- Settings apply globally across all pages
 
 ### Blog Detail (`/blog/[slug]`)
 - Read-only page for visitors
@@ -41,16 +48,23 @@ src/
 │   ├── page.tsx              # Homepage
 │   ├── admin/page.tsx        # Admin editor
 │   ├── blog/[slug]/page.tsx  # Article detail
-│   └── api/posts/            # API routes (CRUD)
+│   └── api/
+│       ├── posts/            # API routes (CRUD)
+│       └── settings/         # Settings API
 ├── components/
 │   ├── NotesSidebar.tsx      # Sidebar with notes list
 │   ├── NoteEditor.tsx        # TipTap editor
 │   ├── NoteItem.tsx          # Sidebar item
 │   ├── NewNoteButton.tsx     # + button on homepage
-│   └── SearchBar.tsx         # Search component
+│   ├── SearchBar.tsx         # Search component
+│   ├── SettingsModal.tsx     # Settings modal
+│   ├── ColorPicker.tsx       # Theme color picker
+│   ├── PatternPicker.tsx     # Pattern picker
+│   └── HomePageClient.tsx    # Client components for homepage
 └── lib/
     ├── prisma.ts             # Database client
-    └── hooks/useAutoSave.ts  # Auto-save hook
+    ├── hooks/useAutoSave.ts  # Auto-save hook
+    └── contexts/SettingsContext.tsx  # Settings state
 ```
 
 ## Database Schema
@@ -64,6 +78,14 @@ model Post {
   published Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Settings {
+  id              String   @id @default("singleton")
+  blogTitle       String   @default("Notes")
+  backgroundColor String   @default("#FFFEF5")
+  pattern         String   @default("plain")
+  updatedAt       DateTime @updatedAt
 }
 ```
 

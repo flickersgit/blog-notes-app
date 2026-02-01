@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SettingsProvider } from "@/lib/contexts/SettingsContext";
 
 export const metadata: Metadata = {
   title: "Notes",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <SettingsProvider>{children}</SettingsProvider>
+      </body>
     </html>
   );
 }

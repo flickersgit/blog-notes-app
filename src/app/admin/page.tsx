@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { NotesSidebar } from '@/components/NotesSidebar'
+import { useSettings } from '@/lib/contexts/SettingsContext'
 
 const NoteEditor = dynamic(() => import('@/components/NoteEditor').then(mod => mod.NoteEditor), {
   ssr: false,
@@ -28,6 +29,7 @@ interface Note {
 function AdminContent() {
   const searchParams = useSearchParams()
   const noteIdFromUrl = searchParams.get('note')
+  const { settings } = useSettings()
 
   const [notes, setNotes] = useState<Note[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -156,7 +158,10 @@ function AdminContent() {
       />
 
       {/* Mobile header with hamburger menu */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-30 bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
+      <div
+        className="md:hidden fixed top-0 left-0 right-0 z-30 border-b border-gray-200/50 px-4 py-3 flex items-center gap-3"
+        style={{ backgroundColor: 'var(--background)' }}
+      >
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
@@ -176,7 +181,7 @@ function AdminContent() {
           </svg>
         </button>
         <span className="font-medium text-gray-800 truncate">
-          {selectedNote?.title || 'Notes'}
+          {selectedNote?.title || settings.blogTitle}
         </span>
       </div>
 

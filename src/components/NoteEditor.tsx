@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import { useEffect, useCallback } from 'react'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
+import { useSettings } from '@/lib/contexts/SettingsContext'
 
 interface NoteEditorProps {
   postId: string
@@ -27,6 +28,9 @@ export function NoteEditor({
   onPublishToggle,
   onSaved,
 }: NoteEditorProps) {
+  const { settings } = useSettings()
+  const patternClass = settings.pattern !== 'plain' ? `pattern-${settings.pattern}` : ''
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -81,7 +85,10 @@ export function NoteEditor({
 
   if (!postId) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-amber-50/30 pt-16 md:pt-0">
+      <div
+        className={`flex-1 flex items-center justify-center pt-16 md:pt-0 ${patternClass}`}
+        style={{ backgroundColor: 'var(--background)' }}
+      >
         <div className="text-center text-gray-400">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +111,14 @@ export function NoteEditor({
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-amber-50/30 pt-16 md:pt-0">
-      <div className="border-b border-gray-200 px-4 md:px-8 py-4 bg-white/50">
+    <div
+      className={`flex-1 flex flex-col pt-16 md:pt-0 ${patternClass}`}
+      style={{ backgroundColor: 'var(--background)' }}
+    >
+      <div
+        className="border-b border-gray-200/50 px-4 md:px-8 py-4"
+        style={{ backgroundColor: 'var(--background-shade)' }}
+      >
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <button

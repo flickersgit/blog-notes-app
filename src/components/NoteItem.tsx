@@ -29,12 +29,25 @@ export function NoteItem({
     .slice(0, 60)
     .trim()
 
+  const isHighlighted = (isSelected && !isSelectMode) || isChecked
+
   return (
     <div
       onClick={isSelectMode ? () => onCheck(!isChecked) : onClick}
-      className={`px-4 py-3 cursor-pointer border-b border-gray-100 transition-colors ${
-        isSelected && !isSelectMode ? 'bg-amber-50' : 'hover:bg-gray-50'
-      } ${isChecked ? 'bg-amber-50' : ''}`}
+      className="px-4 py-3 cursor-pointer border-b border-gray-100 transition-colors"
+      style={{
+        backgroundColor: isHighlighted ? 'var(--background-shade)' : undefined,
+      }}
+      onMouseEnter={(e) => {
+        if (!isHighlighted) {
+          e.currentTarget.style.backgroundColor = 'var(--background-shade)'
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!isHighlighted) {
+          e.currentTarget.style.backgroundColor = ''
+        }
+      }}
     >
       <div className="flex items-start gap-3">
         {isSelectMode && (

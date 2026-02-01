@@ -2,6 +2,7 @@
 
 :root {
   --background: #FFFEF5;
+  --background-shade: #FDF9E8;
   --foreground: #1a1a1a;
 }
 
@@ -9,6 +10,22 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Pattern styles */
+.pattern-dots {
+  background-image: radial-gradient(circle, #00000015 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.pattern-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 23px,
+    #00000012 23px,
+    #00000012 24px
+  );
 }
 
 /* TipTap Editor Styles */

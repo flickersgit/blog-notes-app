@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { NoteItem } from './NoteItem'
 import { SearchBar } from './SearchBar'
+import { SettingsModal } from './SettingsModal'
+import { useSettings } from '@/lib/contexts/SettingsContext'
 
 interface Note {
   id: string
@@ -34,9 +36,11 @@ export function NotesSidebar({
   isOpen,
   onToggle,
 }: NotesSidebarProps) {
+  const { settings } = useSettings()
   const [searchQuery, setSearchQuery] = useState('')
   const [isSelectMode, setIsSelectMode] = useState(false)
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set())
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   const filteredNotes = useMemo(() => {
     if (!searchQuery.trim()) return notes
@@ -97,11 +101,12 @@ export function NotesSidebar({
 
       <div
         className={`
-          fixed inset-y-0 left-0 z-50 w-72 bg-stone-50 border-r border-gray-200 flex flex-col
+          fixed inset-y-0 left-0 z-50 w-72 border-r border-gray-200 flex flex-col
           transform transition-transform duration-300 ease-in-out
           md:relative md:translate-x-0
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
+        style={{ backgroundColor: 'var(--background)' }}
       >
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center justify-between mb-4">
@@ -124,7 +129,25 @@ export function NotesSidebar({
                   />
                 </svg>
               </Link>
-              <h1 className="text-xl font-semibold text-gray-800">Notes</h1>
+              <h1 className="text-xl font-semibold text-gray-800">{settings.blogTitle}</h1>
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600 transition-colors"
+                title="Settings"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
             </div>
             <div className="flex items-center gap-2">
               {/* Close button - mobile only */}
@@ -195,7 +218,10 @@ export function NotesSidebar({
 
         {/* Select mode toolbar */}
         {filteredNotes.length > 0 && (
-          <div className="px-4 py-2 border-b border-gray-200 flex items-center justify-between bg-gray-50">
+          <div
+            className="px-4 py-2 border-b border-gray-200 flex items-center justify-between"
+            style={{ backgroundColor: 'var(--background-shade)' }}
+          >
             <button
               onClick={handleToggleSelectMode}
               className={`px-3 py-1 text-sm rounded transition-colors ${
@@ -256,6 +282,8 @@ export function NotesSidebar({
           {notes.length} {notes.length === 1 ? 'note' : 'notes'}
         </div>
       </div>
+
+      <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </>
   )
 }

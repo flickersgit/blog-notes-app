@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
 import { NewNoteButton } from '@/components/NewNoteButton'
+import { BlogTitle, PageWrapper, PostCard, ThemedHeader } from '@/components/HomePageClient'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,13 +24,13 @@ export default async function HomePage() {
   const posts = await getPublishedPosts()
 
   return (
-    <div className="min-h-screen bg-amber-50/30">
-      <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+    <PageWrapper>
+      <ThemedHeader>
         <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-gray-800">Notes</h1>
+          <h1 className="text-xl font-semibold text-gray-800"><BlogTitle /></h1>
           <NewNoteButton />
         </div>
-      </header>
+      </ThemedHeader>
 
       <main className="max-w-2xl mx-auto px-6 py-8">
         {posts.length === 0 ? (
@@ -60,23 +60,15 @@ export default async function HomePage() {
                 .trim()
 
               return (
-                <Link
+                <PostCard
                   key={post.id}
                   href={`/blog/${post.slug}`}
-                  className="block p-6 bg-white rounded-xl border border-gray-100 hover:border-amber-200 hover:shadow-sm transition-all"
-                >
-                  <h2 className="text-lg font-medium text-gray-900 mb-2">
-                    {post.title || 'Untitled'}
-                  </h2>
-                  <p className="text-gray-500 text-sm line-clamp-2 mb-3">
-                    {preview || 'No content'}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {formatDistanceToNow(new Date(post.updatedAt), {
-                      addSuffix: true,
-                    })}
-                  </p>
-                </Link>
+                  title={post.title}
+                  preview={preview}
+                  date={formatDistanceToNow(new Date(post.updatedAt), {
+                    addSuffix: true,
+                  })}
+                />
               )
             })}
           </div>
@@ -88,6 +80,6 @@ export default async function HomePage() {
           Built with Apple Notes style
         </div>
       </footer>
-    </div>
+    </PageWrapper>
   )
 }

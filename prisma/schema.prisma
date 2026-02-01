@@ -16,3 +16,11 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Settings {
+  id              String   @id @default("singleton")
+  blogTitle       String   @default("Notes")
+  backgroundColor String   @default("#FFFEF5")
+  pattern         String   @default("plain")
+  updatedAt       DateTime @updatedAt
+}
