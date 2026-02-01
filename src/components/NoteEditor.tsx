@@ -3,9 +3,10 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { useAutoSave } from '@/lib/hooks/useAutoSave'
 import { useSettings } from '@/lib/contexts/SettingsContext'
+import { RetroFigureExtension, RetroFigurePicker, type AnimationType } from './RetroFigure'
 
 interface NoteEditorProps {
   postId: string
@@ -30,6 +31,7 @@ export function NoteEditor({
 }: NoteEditorProps) {
   const { settings } = useSettings()
   const patternClass = settings.pattern !== 'plain' ? `pattern-${settings.pattern}` : ''
+  const [showFigurePicker, setShowFigurePicker] = useState(false)
 
   const editor = useEditor({
     extensions: [
@@ -41,6 +43,7 @@ export function NoteEditor({
       Placeholder.configure({
         placeholder: 'Start writing...',
       }),
+      RetroFigureExtension,
     ],
     content: initialContent,
     immediatelyRender: false,
@@ -82,6 +85,15 @@ export function NoteEditor({
       console.error('Failed to toggle publish status:', error)
     }
   }, [postId, published, onPublishToggle])
+
+  const handleInsertFigure = useCallback(
+    (figure: string, animation: AnimationType) => {
+      if (editor) {
+        editor.chain().focus().insertRetroFigure({ figure, animation }).run()
+      }
+    },
+    [editor]
+  )
 
   if (!postId) {
     return (
@@ -131,6 +143,30 @@ export function NoteEditor({
             >
               {published ? 'Published' : 'Draft'}
             </button>
+            {/* Retro Figure Button */}
+            <div className="relative">
+              <button
+                onClick={() => setShowFigurePicker(!showFigurePicker)}
+                className="px-2 py-1 rounded text-xs font-medium transition-colors bg-gray-100 dark:bg-zinc-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-zinc-600 flex items-center gap-1"
+                title="Insert retro figure"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M10 2a2 2 0 00-2 2v1H6a2 2 0 00-2 2v1h12V7a2 2 0 00-2-2h-2V4a2 2 0 00-2-2zM4 10v6a2 2 0 002 2h8a2 2 0 002-2v-6H4z" />
+                </svg>
+                <span className="hidden sm:inline">Figure</span>
+              </button>
+              {showFigurePicker && (
+                <RetroFigurePicker
+                  onSelect={handleInsertFigure}
+                  onClose={() => setShowFigurePicker(false)}
+                />
+              )}
+            </div>
           </div>
           <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
             {isSaving ? (

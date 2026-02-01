@@ -237,3 +237,325 @@ body {
 .dark .prose a:hover {
   color: #fcd34d;
 }
+
+/* ==========================================================================
+   Retro Pixel Art Figures
+   Using CSS box-shadow technique for pixel art - no images needed
+   ========================================================================== */
+
+.retro-figure {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  position: relative;
+  image-rendering: pixelated;
+  font-size: 32px;
+}
+
+/* Base pixel unit size */
+.retro-figure::before,
+.retro-figure::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+/* ==========================================================================
+   Minecraft Characters
+   8x12 pixel grid scaled to fit 1em height
+   ========================================================================== */
+
+/* Steve - Classic Minecraft player */
+.retro-figure--steve::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Hair - Brown */
+    3px 0px #5C4033, 4px 0px #5C4033, 5px 0px #5C4033,
+    2px 1px #5C4033, 3px 1px #5C4033, 4px 1px #5C4033, 5px 1px #5C4033, 6px 1px #5C4033,
+    /* Face - Skin */
+    2px 2px #C69C6D, 3px 2px #C69C6D, 4px 2px #C69C6D, 5px 2px #C69C6D, 6px 2px #C69C6D,
+    2px 3px #C69C6D, 3px 3px #3D2314, 4px 3px #C69C6D, 5px 3px #3D2314, 6px 3px #C69C6D,
+    2px 4px #C69C6D, 3px 4px #C69C6D, 4px 4px #C69C6D, 5px 4px #C69C6D, 6px 4px #C69C6D,
+    /* Body - Teal shirt */
+    2px 5px #00A8A8, 3px 5px #00A8A8, 4px 5px #00A8A8, 5px 5px #00A8A8, 6px 5px #00A8A8,
+    2px 6px #00A8A8, 3px 6px #00A8A8, 4px 6px #00A8A8, 5px 6px #00A8A8, 6px 6px #00A8A8,
+    2px 7px #00A8A8, 3px 7px #00A8A8, 4px 7px #00A8A8, 5px 7px #00A8A8, 6px 7px #00A8A8,
+    /* Arms - Skin */
+    1px 5px #C69C6D, 7px 5px #C69C6D,
+    1px 6px #C69C6D, 7px 6px #C69C6D,
+    /* Legs - Blue jeans */
+    3px 8px #3C5A99, 4px 8px #3C5A99, 5px 8px #3C5A99,
+    3px 9px #3C5A99, 5px 9px #3C5A99,
+    3px 10px #3C5A99, 5px 10px #3C5A99;
+}
+
+/* Alex - Minecraft player with orange hair */
+.retro-figure--alex::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Hair - Orange */
+    3px 0px #D97706, 4px 0px #D97706, 5px 0px #D97706,
+    2px 1px #D97706, 3px 1px #D97706, 4px 1px #D97706, 5px 1px #D97706, 6px 1px #D97706,
+    /* Face - Skin */
+    2px 2px #D9A066, 3px 2px #D9A066, 4px 2px #D9A066, 5px 2px #D9A066, 6px 2px #D9A066,
+    2px 3px #D9A066, 3px 3px #2E7D32, 4px 3px #D9A066, 5px 3px #2E7D32, 6px 3px #D9A066,
+    2px 4px #D9A066, 3px 4px #D9A066, 4px 4px #D9A066, 5px 4px #D9A066, 6px 4px #D9A066,
+    /* Body - Green shirt */
+    2px 5px #4CAF50, 3px 5px #4CAF50, 4px 5px #4CAF50, 5px 5px #4CAF50, 6px 5px #4CAF50,
+    2px 6px #4CAF50, 3px 6px #4CAF50, 4px 6px #4CAF50, 5px 6px #4CAF50, 6px 6px #4CAF50,
+    2px 7px #4CAF50, 3px 7px #4CAF50, 4px 7px #4CAF50, 5px 7px #4CAF50, 6px 7px #4CAF50,
+    /* Arms - Skin */
+    1px 5px #D9A066, 7px 5px #D9A066,
+    1px 6px #D9A066, 7px 6px #D9A066,
+    /* Legs - Brown pants */
+    3px 8px #5D4037, 4px 8px #5D4037, 5px 8px #5D4037,
+    3px 9px #5D4037, 5px 9px #5D4037,
+    3px 10px #5D4037, 5px 10px #5D4037;
+}
+
+/* Creeper - Explosive green mob */
+.retro-figure--creeper::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Head - Green */
+    2px 0px #5A9E3A, 3px 0px #5A9E3A, 4px 0px #5A9E3A, 5px 0px #5A9E3A, 6px 0px #5A9E3A,
+    2px 1px #5A9E3A, 3px 1px #5A9E3A, 4px 1px #5A9E3A, 5px 1px #5A9E3A, 6px 1px #5A9E3A,
+    /* Face - Eyes and mouth */
+    2px 2px #5A9E3A, 3px 2px #1A1A1A, 4px 2px #5A9E3A, 5px 2px #1A1A1A, 6px 2px #5A9E3A,
+    2px 3px #5A9E3A, 3px 3px #1A1A1A, 4px 3px #1A1A1A, 5px 3px #1A1A1A, 6px 3px #5A9E3A,
+    2px 4px #5A9E3A, 3px 4px #1A1A1A, 4px 4px #5A9E3A, 5px 4px #1A1A1A, 6px 4px #5A9E3A,
+    /* Body - Green */
+    2px 5px #4A8A2A, 3px 5px #4A8A2A, 4px 5px #4A8A2A, 5px 5px #4A8A2A, 6px 5px #4A8A2A,
+    2px 6px #4A8A2A, 3px 6px #4A8A2A, 4px 6px #4A8A2A, 5px 6px #4A8A2A, 6px 6px #4A8A2A,
+    2px 7px #4A8A2A, 3px 7px #4A8A2A, 4px 7px #4A8A2A, 5px 7px #4A8A2A, 6px 7px #4A8A2A,
+    /* Legs - 4 legs */
+    2px 8px #4A8A2A, 3px 8px #4A8A2A, 5px 8px #4A8A2A, 6px 8px #4A8A2A,
+    2px 9px #4A8A2A, 3px 9px #4A8A2A, 5px 9px #4A8A2A, 6px 9px #4A8A2A,
+    2px 10px #4A8A2A, 3px 10px #4A8A2A, 5px 10px #4A8A2A, 6px 10px #4A8A2A;
+}
+
+/* Skeleton - Bony archer */
+.retro-figure--skeleton::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Skull */
+    3px 0px #E8E8E8, 4px 0px #E8E8E8, 5px 0px #E8E8E8,
+    2px 1px #E8E8E8, 3px 1px #E8E8E8, 4px 1px #E8E8E8, 5px 1px #E8E8E8, 6px 1px #E8E8E8,
+    /* Face - Dark eye sockets */
+    2px 2px #E8E8E8, 3px 2px #333333, 4px 2px #E8E8E8, 5px 2px #333333, 6px 2px #E8E8E8,
+    2px 3px #E8E8E8, 3px 3px #333333, 4px 3px #E8E8E8, 5px 3px #333333, 6px 3px #E8E8E8,
+    2px 4px #E8E8E8, 3px 4px #E8E8E8, 4px 4px #333333, 5px 4px #E8E8E8, 6px 4px #E8E8E8,
+    /* Ribcage */
+    3px 5px #D0D0D0, 4px 5px #333333, 5px 5px #D0D0D0,
+    3px 6px #D0D0D0, 4px 6px #333333, 5px 6px #D0D0D0,
+    3px 7px #D0D0D0, 4px 7px #333333, 5px 7px #D0D0D0,
+    /* Arms - Bones */
+    1px 5px #E8E8E8, 7px 5px #E8E8E8,
+    1px 6px #E8E8E8, 7px 6px #E8E8E8,
+    /* Legs - Bones */
+    3px 8px #D0D0D0, 5px 8px #D0D0D0,
+    3px 9px #D0D0D0, 5px 9px #D0D0D0,
+    3px 10px #D0D0D0, 5px 10px #D0D0D0;
+}
+
+/* Zombie - Undead mob */
+.retro-figure--zombie::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Hair - Dark green */
+    3px 0px #2E4A1F, 4px 0px #2E4A1F, 5px 0px #2E4A1F,
+    2px 1px #2E4A1F, 3px 1px #2E4A1F, 4px 1px #2E4A1F, 5px 1px #2E4A1F, 6px 1px #2E4A1F,
+    /* Face - Green skin */
+    2px 2px #5B8A4A, 3px 2px #5B8A4A, 4px 2px #5B8A4A, 5px 2px #5B8A4A, 6px 2px #5B8A4A,
+    2px 3px #5B8A4A, 3px 3px #1A1A1A, 4px 3px #5B8A4A, 5px 3px #1A1A1A, 6px 3px #5B8A4A,
+    2px 4px #5B8A4A, 3px 4px #5B8A4A, 4px 4px #5B8A4A, 5px 4px #5B8A4A, 6px 4px #5B8A4A,
+    /* Body - Teal torn shirt */
+    2px 5px #00888A, 3px 5px #00888A, 4px 5px #00888A, 5px 5px #00888A, 6px 5px #00888A,
+    2px 6px #00888A, 3px 6px #00888A, 4px 6px #00888A, 5px 6px #00888A, 6px 6px #00888A,
+    2px 7px #00888A, 3px 7px #00888A, 4px 7px #00888A, 5px 7px #00888A, 6px 7px #00888A,
+    /* Arms - Green skin */
+    0px 5px #5B8A4A, 1px 5px #5B8A4A, 7px 5px #5B8A4A, 8px 5px #5B8A4A,
+    0px 6px #5B8A4A, 7px 6px #5B8A4A,
+    /* Legs - Blue pants */
+    3px 8px #2C4A7A, 4px 8px #2C4A7A, 5px 8px #2C4A7A,
+    3px 9px #2C4A7A, 5px 9px #2C4A7A,
+    3px 10px #2C4A7A, 5px 10px #2C4A7A;
+}
+
+/* ==========================================================================
+   Lego Minifigs
+   Simple blocky figures with solid colors
+   ========================================================================== */
+
+/* Lego Red Minifig */
+.retro-figure--lego-red::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Head - Yellow */
+    3px 0px #FFD93D, 4px 0px #FFD93D, 5px 0px #FFD93D,
+    2px 1px #FFD93D, 3px 1px #FFD93D, 4px 1px #FFD93D, 5px 1px #FFD93D, 6px 1px #FFD93D,
+    2px 2px #FFD93D, 3px 2px #1A1A1A, 4px 2px #FFD93D, 5px 2px #1A1A1A, 6px 2px #FFD93D,
+    2px 3px #FFD93D, 3px 3px #FFD93D, 4px 3px #FFD93D, 5px 3px #FFD93D, 6px 3px #FFD93D,
+    2px 4px #FFD93D, 3px 4px #FFD93D, 4px 4px #1A1A1A, 5px 4px #FFD93D, 6px 4px #FFD93D,
+    /* Body - Red */
+    2px 5px #E53935, 3px 5px #E53935, 4px 5px #E53935, 5px 5px #E53935, 6px 5px #E53935,
+    2px 6px #E53935, 3px 6px #E53935, 4px 6px #E53935, 5px 6px #E53935, 6px 6px #E53935,
+    2px 7px #E53935, 3px 7px #E53935, 4px 7px #E53935, 5px 7px #E53935, 6px 7px #E53935,
+    /* Arms - Yellow */
+    1px 5px #FFD93D, 7px 5px #FFD93D,
+    1px 6px #FFD93D, 7px 6px #FFD93D,
+    /* Legs - Red */
+    3px 8px #C62828, 4px 8px #C62828, 5px 8px #C62828,
+    3px 9px #C62828, 5px 9px #C62828,
+    3px 10px #1A1A1A, 5px 10px #1A1A1A;
+}
+
+/* Lego Blue Minifig */
+.retro-figure--lego-blue::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Head - Yellow */
+    3px 0px #FFD93D, 4px 0px #FFD93D, 5px 0px #FFD93D,
+    2px 1px #FFD93D, 3px 1px #FFD93D, 4px 1px #FFD93D, 5px 1px #FFD93D, 6px 1px #FFD93D,
+    2px 2px #FFD93D, 3px 2px #1A1A1A, 4px 2px #FFD93D, 5px 2px #1A1A1A, 6px 2px #FFD93D,
+    2px 3px #FFD93D, 3px 3px #FFD93D, 4px 3px #FFD93D, 5px 3px #FFD93D, 6px 3px #FFD93D,
+    2px 4px #FFD93D, 3px 4px #FFD93D, 4px 4px #1A1A1A, 5px 4px #FFD93D, 6px 4px #FFD93D,
+    /* Body - Blue */
+    2px 5px #1E88E5, 3px 5px #1E88E5, 4px 5px #1E88E5, 5px 5px #1E88E5, 6px 5px #1E88E5,
+    2px 6px #1E88E5, 3px 6px #1E88E5, 4px 6px #1E88E5, 5px 6px #1E88E5, 6px 6px #1E88E5,
+    2px 7px #1E88E5, 3px 7px #1E88E5, 4px 7px #1E88E5, 5px 7px #1E88E5, 6px 7px #1E88E5,
+    /* Arms - Yellow */
+    1px 5px #FFD93D, 7px 5px #FFD93D,
+    1px 6px #FFD93D, 7px 6px #FFD93D,
+    /* Legs - Blue */
+    3px 8px #1565C0, 4px 8px #1565C0, 5px 8px #1565C0,
+    3px 9px #1565C0, 5px 9px #1565C0,
+    3px 10px #1A1A1A, 5px 10px #1A1A1A;
+}
+
+/* Lego Yellow Minifig */
+.retro-figure--lego-yellow::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Head - Yellow */
+    3px 0px #FFD93D, 4px 0px #FFD93D, 5px 0px #FFD93D,
+    2px 1px #FFD93D, 3px 1px #FFD93D, 4px 1px #FFD93D, 5px 1px #FFD93D, 6px 1px #FFD93D,
+    2px 2px #FFD93D, 3px 2px #1A1A1A, 4px 2px #FFD93D, 5px 2px #1A1A1A, 6px 2px #FFD93D,
+    2px 3px #FFD93D, 3px 3px #FFD93D, 4px 3px #FFD93D, 5px 3px #FFD93D, 6px 3px #FFD93D,
+    2px 4px #FFD93D, 3px 4px #FFD93D, 4px 4px #1A1A1A, 5px 4px #FFD93D, 6px 4px #FFD93D,
+    /* Body - Orange/Yellow */
+    2px 5px #FFB300, 3px 5px #FFB300, 4px 5px #FFB300, 5px 5px #FFB300, 6px 5px #FFB300,
+    2px 6px #FFB300, 3px 6px #FFB300, 4px 6px #FFB300, 5px 6px #FFB300, 6px 6px #FFB300,
+    2px 7px #FFB300, 3px 7px #FFB300, 4px 7px #FFB300, 5px 7px #FFB300, 6px 7px #FFB300,
+    /* Arms - Yellow */
+    1px 5px #FFD93D, 7px 5px #FFD93D,
+    1px 6px #FFD93D, 7px 6px #FFD93D,
+    /* Legs - Orange */
+    3px 8px #FF8F00, 4px 8px #FF8F00, 5px 8px #FF8F00,
+    3px 9px #FF8F00, 5px 9px #FF8F00,
+    3px 10px #1A1A1A, 5px 10px #1A1A1A;
+}
+
+/* Lego Green Minifig */
+.retro-figure--lego-green::before {
+  transform: scale(2.4);
+  transform-origin: top left;
+  box-shadow:
+    /* Head - Yellow */
+    3px 0px #FFD93D, 4px 0px #FFD93D, 5px 0px #FFD93D,
+    2px 1px #FFD93D, 3px 1px #FFD93D, 4px 1px #FFD93D, 5px 1px #FFD93D, 6px 1px #FFD93D,
+    2px 2px #FFD93D, 3px 2px #1A1A1A, 4px 2px #FFD93D, 5px 2px #1A1A1A, 6px 2px #FFD93D,
+    2px 3px #FFD93D, 3px 3px #FFD93D, 4px 3px #FFD93D, 5px 3px #FFD93D, 6px 3px #FFD93D,
+    2px 4px #FFD93D, 3px 4px #FFD93D, 4px 4px #1A1A1A, 5px 4px #FFD93D, 6px 4px #FFD93D,
+    /* Body - Green */
+    2px 5px #43A047, 3px 5px #43A047, 4px 5px #43A047, 5px 5px #43A047, 6px 5px #43A047,
+    2px 6px #43A047, 3px 6px #43A047, 4px 6px #43A047, 5px 6px #43A047, 6px 6px #43A047,
+    2px 7px #43A047, 3px 7px #43A047, 4px 7px #43A047, 5px 7px #43A047, 6px 7px #43A047,
+    /* Arms - Yellow */
+    1px 5px #FFD93D, 7px 5px #FFD93D,
+    1px 6px #FFD93D, 7px 6px #FFD93D,
+    /* Legs - Green */
+    3px 8px #2E7D32, 4px 8px #2E7D32, 5px 8px #2E7D32,
+    3px 9px #2E7D32, 5px 9px #2E7D32,
+    3px 10px #1A1A1A, 5px 10px #1A1A1A;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+/* Idle - Subtle breathing */
+@keyframes retro-idle {
+  0%, 100% { transform: scale(2.4) translateY(0); }
+  50% { transform: scale(2.4) translateY(-0.5px); }
+}
+
+/* Walk - Stepping motion */
+@keyframes retro-walk {
+  0%, 100% { transform: scale(2.4) translateX(0) rotate(0deg); }
+  25% { transform: scale(2.4) translateX(-1px) rotate(-2deg); }
+  50% { transform: scale(2.4) translateX(0) rotate(0deg); }
+  75% { transform: scale(2.4) translateX(1px) rotate(2deg); }
+}
+
+/* Bounce - Jumping */
+@keyframes retro-bounce {
+  0%, 100% { transform: scale(2.4) translateY(0); }
+  50% { transform: scale(2.4) translateY(-3px); }
+}
+
+/* Wave - Arm waving (using transform and subtle body movement) */
+@keyframes retro-wave {
+  0%, 100% { transform: scale(2.4) rotate(0deg); }
+  25% { transform: scale(2.4) rotate(-3deg); }
+  75% { transform: scale(2.4) rotate(3deg); }
+}
+
+/* Apply animations */
+.retro-figure--idle::before {
+  animation: retro-idle 2s ease-in-out infinite;
+}
+
+.retro-figure--walk::before {
+  animation: retro-walk 0.5s ease-in-out infinite;
+}
+
+.retro-figure--bounce::before {
+  animation: retro-bounce 0.6s ease-in-out infinite;
+}
+
+.retro-figure--wave::before {
+  animation: retro-wave 0.8s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .retro-figure--idle::before,
+  .retro-figure--walk::before,
+  .retro-figure--bounce::before,
+  .retro-figure--wave::before {
+    animation: none;
+  }
+}
+
+/* Make figures selectable in editor */
+.ProseMirror .retro-figure {
+  cursor: pointer;
+  user-select: all;
+}
+
+.ProseMirror .retro-figure.ProseMirror-selectednode {
+  outline: 2px solid #d97706;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
