@@ -15,12 +15,14 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   const [blogTitle, setBlogTitle] = useState(settings.blogTitle)
   const [backgroundColor, setBackgroundColor] = useState(settings.backgroundColor)
   const [pattern, setPattern] = useState<PatternType>(settings.pattern)
+  const [footnote, setFootnote] = useState(settings.footnote)
   const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
     setBlogTitle(settings.blogTitle)
     setBackgroundColor(settings.backgroundColor)
     setPattern(settings.pattern)
+    setFootnote(settings.footnote)
   }, [settings, isOpen])
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   const handleSave = async () => {
     setIsSaving(true)
     try {
-      await updateSettings({ blogTitle, backgroundColor, pattern })
+      await updateSettings({ blogTitle, backgroundColor, pattern, footnote })
       onClose()
     } catch (error) {
       console.error('Failed to save settings:', error)
@@ -48,7 +50,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   const hasChanges =
     blogTitle !== settings.blogTitle ||
     backgroundColor !== settings.backgroundColor ||
-    pattern !== settings.pattern
+    pattern !== settings.pattern ||
+    footnote !== settings.footnote
 
   if (!isOpen) return null
 
@@ -110,6 +113,22 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               Pattern
             </label>
             <PatternPicker value={pattern} onChange={setPattern} />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Footnote
+            </label>
+            <input
+              type="text"
+              value={footnote}
+              onChange={(e) => setFootnote(e.target.value.slice(0, 100))}
+              placeholder="Footer text"
+              className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-800"
+            />
+            <p className="mt-1 text-xs text-gray-400 text-right">
+              {footnote.length}/100
+            </p>
           </div>
         </div>
 

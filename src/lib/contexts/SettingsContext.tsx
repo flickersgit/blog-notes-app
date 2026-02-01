@@ -73,6 +73,7 @@ interface Settings {
   blogTitle: string
   backgroundColor: string
   pattern: PatternType
+  footnote: string
 }
 
 interface SettingsContextType {
@@ -85,6 +86,7 @@ const defaultSettings: Settings = {
   blogTitle: 'Notes',
   backgroundColor: '#FFFEF5',
   pattern: 'plain',
+  footnote: 'Built with Apple Notes style',
 }
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined)
@@ -109,6 +111,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
             blogTitle: data.blogTitle,
             backgroundColor: data.backgroundColor,
             pattern: data.pattern || 'plain',
+            footnote: data.footnote || 'Built with Apple Notes style',
           })
         }
       } catch (error) {
@@ -146,6 +149,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
           blogTitle: data.blogTitle,
           backgroundColor: data.backgroundColor,
           pattern: data.pattern || 'plain',
+          footnote: data.footnote || 'Built with Apple Notes style',
         })
       }
     } catch (error) {

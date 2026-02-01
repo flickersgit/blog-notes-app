@@ -10,6 +10,12 @@ export function BlogTitle() {
   return <>{settings.blogTitle}</>
 }
 
+export function Footnote() {
+  const { settings, isLoading } = useSettings()
+  if (isLoading) return <span className="opacity-0">Loading</span>
+  return <>{settings.footnote}</>
+}
+
 export function BackToNotesLink() {
   const { settings, isLoading } = useSettings()
   return (

@@ -22,5 +22,6 @@ model Settings {
   blogTitle       String   @default("Notes")
   backgroundColor String   @default("#FFFEF5")
   pattern         String   @default("plain")
+  footnote        String   @default("Built with Apple Notes style")
   updatedAt       DateTime @updatedAt
 }

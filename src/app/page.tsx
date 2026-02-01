@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { formatDistanceToNow } from 'date-fns'
 import { NewNoteButton } from '@/components/NewNoteButton'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { BlogTitle, PageWrapper, PostCard, ThemedHeader } from '@/components/HomePageClient'
+import { BlogTitle, Footnote, PageWrapper, PostCard, ThemedHeader } from '@/components/HomePageClient'
 
 export const dynamic = 'force-dynamic'
 
@@ -97,7 +97,7 @@ export default async function HomePage() {
 
       <footer className="border-t border-gray-200 dark:border-zinc-700 mt-16">
         <div className="max-w-2xl mx-auto px-6 py-4 text-center text-sm text-gray-400 dark:text-gray-500">
-          Built with Apple Notes style
+          <Footnote />
         </div>
       </footer>
     </PageWrapper>
