@@ -71,17 +71,17 @@ function AdminContent() {
     }
   }
 
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this note?')) return
-
+  const handleBulkDelete = async (ids: string[]) => {
     try {
-      await fetch(`/api/posts/${id}`, { method: 'DELETE' })
-      setNotes((prev) => prev.filter((n) => n.id !== id))
-      if (selectedId === id) {
-        setSelectedId(notes.length > 1 ? notes[0].id : null)
+      await Promise.all(
+        ids.map((id) => fetch(`/api/posts/${id}`, { method: 'DELETE' }))
+      )
+      setNotes((prev) => prev.filter((n) => !ids.includes(n.id)))
+      if (selectedId && ids.includes(selectedId)) {
+        setSelectedId(null)
       }
     } catch (error) {
-      console.error('Failed to delete note:', error)
+      console.error('Failed to bulk delete notes:', error)
     }
   }
 
@@ -148,7 +148,7 @@ function AdminContent() {
         selectedId={selectedId}
         onSelect={setSelectedId}
         onCreateNew={handleCreateNew}
-        onDelete={handleDelete}
+        onBulkDelete={handleBulkDelete}
         isCreating={isCreating}
       />
       <NoteEditor
