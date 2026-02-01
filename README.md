@@ -25,7 +25,7 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 
 ### Admin Page (`/admin`)
 - Single-page app with sidebar + editor layout
-- "+" button to create new note with auto-generated date title (e.g., "Sat, 1 Feb 26")
+- "+" button to create new note with auto-generated date title (e.g., "Sunday, Feb 1 2026")
 - Multiple posts same day get index suffix: "~ 2", "~ 3", etc.
 - Back button to return to homepage
 - Search notes by title/content
