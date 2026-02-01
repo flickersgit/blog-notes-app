@@ -11,7 +11,8 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 - **Database:** Vercel Postgres (Neon)
 - **ORM:** Prisma
 - **Editor:** TipTap (WYSIWYG)
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4
+- **Theme:** next-themes (Dark/Light mode)
 - **Hosting:** Vercel
 
 ## Features
@@ -19,6 +20,8 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 ### Homepage (`/`)
 - Display list of published articles
 - "+" button to create new note & open editor directly
+- Dark/Light mode toggle
+- Dynamic browser tab title matching blog name
 
 ### Admin Page (`/admin`)
 - Single-page app with sidebar + editor layout
@@ -29,12 +32,19 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 - Toggle Draft/Published status
 - Select mode for bulk delete (round checkboxes)
 - Settings (gear icon) for customization
+- Auto-cleanup: Empty untitled notes are deleted when leaving the page
 
 ### Settings
 - **Blog Name:** Rename your blog (max 30 characters)
 - **Theme:** 8 pastel color options (Cream, White, Rose, Peach, Mint, Sky, Lavender, Gray)
 - **Pattern:** Choose note background pattern (Plain, Dots, Lines)
 - Settings apply globally across all pages
+
+### Dark/Light Mode
+- Toggle between Light and Dark mode from homepage header
+- Each theme color has harmonious dark variants (tinted darkness, not pure black)
+- Patterns adapt to dark mode with inverted colors
+- Theme preference persisted in localStorage
 
 ### Blog Detail (`/blog/[slug]`)
 - Read-only page for visitors
@@ -46,7 +56,10 @@ A minimalist blogging platform with Apple Notes aesthetic and user experience.
 src/
 ├── app/
 │   ├── page.tsx              # Homepage
-│   ├── admin/page.tsx        # Admin editor
+│   ├── icon.svg              # Favicon (plus icon)
+│   ├── admin/
+│   │   ├── page.tsx          # Admin editor
+│   │   └── layout.tsx        # Admin metadata
 │   ├── blog/[slug]/page.tsx  # Article detail
 │   └── api/
 │       ├── posts/            # API routes (CRUD)
@@ -56,6 +69,7 @@ src/
 │   ├── NoteEditor.tsx        # TipTap editor
 │   ├── NoteItem.tsx          # Sidebar item
 │   ├── NewNoteButton.tsx     # + button on homepage
+│   ├── ThemeToggle.tsx       # Dark/Light mode toggle
 │   ├── SearchBar.tsx         # Search component
 │   ├── SettingsModal.tsx     # Settings modal
 │   ├── ColorPicker.tsx       # Theme color picker
@@ -64,7 +78,8 @@ src/
 └── lib/
     ├── prisma.ts             # Database client
     ├── hooks/useAutoSave.ts  # Auto-save hook
-    └── contexts/SettingsContext.tsx  # Settings state
+    ├── contexts/SettingsContext.tsx  # Settings state
+    └── providers/ThemeProvider.tsx   # Dark/Light mode provider
 ```
 
 ## Database Schema
