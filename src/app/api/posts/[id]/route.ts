@@ -48,3 +48,25 @@ export async function DELETE(request: Request, { params }: RouteParams) {
 
   return NextResponse.json({ success: true })
 }
+
+// Handle beacon requests for cleanup (sendBeacon only sends POST)
+export async function POST(request: Request, { params }: RouteParams) {
+  const url = new URL(request.url)
+  const method = url.searchParams.get('_method')
+
+  if (method === 'DELETE') {
+    const { id } = await params
+
+    try {
+      await prisma.post.delete({
+        where: { id },
+      })
+    } catch {
+      // Ignore errors (post might already be deleted)
+    }
+
+    return NextResponse.json({ success: true })
+  }
+
+  return NextResponse.json({ error: 'Invalid method' }, { status: 400 })
+}

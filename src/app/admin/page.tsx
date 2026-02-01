@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, Suspense } from 'react'
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -38,7 +38,33 @@ function AdminContent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [initialUrlHandled, setInitialUrlHandled] = useState(false)
 
+  const notesRef = useRef<Note[]>([])
+  notesRef.current = notes
+
   const selectedNote = notes.find((n) => n.id === selectedId) || null
+
+  // Helper to check if a note is empty (untitled and no content)
+  const isEmptyNote = (note: Note) => {
+    const hasNoTitle = !note.title || note.title.trim() === '' || note.title === 'Untitled'
+    const hasNoContent = !note.content || note.content.replace(/<[^>]*>/g, '').trim() === ''
+    return hasNoTitle && hasNoContent
+  }
+
+  // Cleanup empty notes when leaving the page
+  useEffect(() => {
+    const cleanupEmptyNotes = () => {
+      const emptyNotes = notesRef.current.filter(isEmptyNote)
+      emptyNotes.forEach((note) => {
+        navigator.sendBeacon(`/api/posts/${note.id}?_method=DELETE`)
+      })
+    }
+
+    window.addEventListener('beforeunload', cleanupEmptyNotes)
+    return () => {
+      window.removeEventListener('beforeunload', cleanupEmptyNotes)
+      cleanupEmptyNotes()
+    }
+  }, [])
 
   const fetchNotes = useCallback(async (selectFromUrl = false) => {
     try {
