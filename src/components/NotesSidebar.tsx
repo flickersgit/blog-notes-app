@@ -36,7 +36,7 @@ export function NotesSidebar({
   isOpen,
   onToggle,
 }: NotesSidebarProps) {
-  const { settings } = useSettings()
+  const { settings, isLoading: isSettingsLoading } = useSettings()
   const [searchQuery, setSearchQuery] = useState('')
   const [isSelectMode, setIsSelectMode] = useState(false)
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set())
@@ -129,7 +129,7 @@ export function NotesSidebar({
                   />
                 </svg>
               </Link>
-              <h1 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{settings.blogTitle}</h1>
+              <h1 className={`text-xl font-semibold text-gray-800 dark:text-gray-100 ${isSettingsLoading ? 'opacity-0' : ''}`}>{settings.blogTitle}</h1>
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"

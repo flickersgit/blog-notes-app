@@ -5,12 +5,13 @@ import { useSettings } from '@/lib/contexts/SettingsContext'
 import { ReactNode } from 'react'
 
 export function BlogTitle() {
-  const { settings } = useSettings()
+  const { settings, isLoading } = useSettings()
+  if (isLoading) return <span className="opacity-0">Loading</span>
   return <>{settings.blogTitle}</>
 }
 
 export function BackToNotesLink() {
-  const { settings } = useSettings()
+  const { settings, isLoading } = useSettings()
   return (
     <Link
       href="/"
@@ -28,7 +29,7 @@ export function BackToNotesLink() {
           clipRule="evenodd"
         />
       </svg>
-      <span>Back to {settings.blogTitle}</span>
+      <span className={isLoading ? 'opacity-0' : ''}>Back to {settings.blogTitle}</span>
     </Link>
   )
 }
